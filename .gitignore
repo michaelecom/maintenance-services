@@ -1,0 +1,12 @@
+# VS Code
+.vscode
+
+# .env files
+*.env*
+
+# build folder
+build
+images
+
+# .http files
+*.http
