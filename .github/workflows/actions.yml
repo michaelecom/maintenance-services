@@ -38,7 +38,7 @@ jobs:
         run: go build -o build cmd/main.go
         env:
           GOARCH: amd64
-          GOOS: linux
+          GOOS: windows
 
       - name: Create artifact
         uses: actions/upload-artifact@v3
