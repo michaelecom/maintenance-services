@@ -35,11 +35,13 @@ jobs:
           cache: true
 
       - name: RUN
-        run: go build -o build cmd/main.go > build/main
+        run: go build -o build cmd/main.go
 
       - name: Create artifact
         uses: actions/upload-artifact@v3
 
         with:
           name: bin
-          path: build/main
+          path: |
+            build
+            main
