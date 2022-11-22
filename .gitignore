@@ -2,11 +2,11 @@
 .vscode
 
 # .env files
-*.env*
+/*.env*
 
-# build folder
-build
-images
+# local folders
+/configs
+/images
 
-# .http files
+# local files
 *.http
