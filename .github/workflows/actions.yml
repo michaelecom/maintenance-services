@@ -19,10 +19,11 @@ jobs:
           go-version: 1.19
           cache: true
 
-      - name: Test
-        run: go test -v ./...
+      - name: RUN
+        run: go test -v ./... -cover
 
   build:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,8 +34,8 @@ jobs:
           go-version: 1.19
           cache: true
 
-      - name: Build
-        run: go build -o build cmd/main.go
+      - name: RUN
+        run: go build -o cmd/main.go > build/main
 
       - name: Create artifact
         uses: actions/upload-artifact@v3
