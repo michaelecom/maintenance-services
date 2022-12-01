@@ -19,7 +19,7 @@ func NewOngoingMaintenancePostgres(db *sqlx.DB) *OngoingMaintenancePostgres {
 func (s *OngoingMaintenancePostgres) CreateOrder(order structures.Order) (int, error) {
 	var id int
 
-	query := fmt.Sprintf("INSERT INTO %s (service_market_id, order_number, car_brand, car_model, car_number) values ($1, $2, $3, $4, $5) RETURNING id", ongoingMaintenanceTable)
+	query := fmt.Sprintf("INSERT INTO %s (service_market_id, order_number, car_brand, car_model, car_number) VALUES ($1, $2, $3, $4, $5) RETURNING id", ongoingMaintenanceTable)
 	row := s.db.QueryRow(query, order.ServiceMarketID, order.OrderNumber, order.CarBrand, order.CarModel, order.CarNumber)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
@@ -60,7 +60,7 @@ func (s *OngoingMaintenancePostgres) DeleteOrder(order structures.Order) error {
 	return err
 }
 
-func (s *OngoingMaintenancePostgres) Clear() error {
+func (s *OngoingMaintenancePostgres) ClearOrders() error {
 	tx, err := s.db.Begin()
 	if err != nil {
 		return err
@@ -78,7 +78,7 @@ func (s *OngoingMaintenancePostgres) Clear() error {
 
 	fields = append(fields, "id serial not null unique")
 	fields = append(fields, "service_market_id int not null")
-	fields = append(fields, "order_number varchar(15) not null unique")
+	fields = append(fields, "order_number varchar(30) not null unique")
 	fields = append(fields, "car_brand varchar(128)")
 	fields = append(fields, "car_model varchar(128)")
 	fields = append(fields, "car_number varchar(10)")

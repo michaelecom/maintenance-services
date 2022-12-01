@@ -34,18 +34,18 @@ func (m *MockOngoingMaintenance) EXPECT() *MockOngoingMaintenanceMockRecorder {
 	return m.recorder
 }
 
-// Clear mocks base method.
-func (m *MockOngoingMaintenance) Clear() error {
+// ClearOrders mocks base method.
+func (m *MockOngoingMaintenance) ClearOrders() error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Clear")
+	ret := m.ctrl.Call(m, "ClearOrders")
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
-// Clear indicates an expected call of Clear.
-func (mr *MockOngoingMaintenanceMockRecorder) Clear() *gomock.Call {
+// ClearOrders indicates an expected call of ClearOrders.
+func (mr *MockOngoingMaintenanceMockRecorder) ClearOrders() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Clear", reflect.TypeOf((*MockOngoingMaintenance)(nil).Clear))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ClearOrders", reflect.TypeOf((*MockOngoingMaintenance)(nil).ClearOrders))
 }
 
 // CreateOrder mocks base method.
@@ -119,4 +119,101 @@ func (m *MockOngoingMaintenance) UpdateOrder(order structures.OrderList) error {
 func (mr *MockOngoingMaintenanceMockRecorder) UpdateOrder(order interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateOrder", reflect.TypeOf((*MockOngoingMaintenance)(nil).UpdateOrder), order)
+}
+
+// MockLogging is a mock of Logging interface.
+type MockLogging struct {
+	ctrl     *gomock.Controller
+	recorder *MockLoggingMockRecorder
+}
+
+// MockLoggingMockRecorder is the mock recorder for MockLogging.
+type MockLoggingMockRecorder struct {
+	mock *MockLogging
+}
+
+// NewMockLogging creates a new mock instance.
+func NewMockLogging(ctrl *gomock.Controller) *MockLogging {
+	mock := &MockLogging{ctrl: ctrl}
+	mock.recorder = &MockLoggingMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockLogging) EXPECT() *MockLoggingMockRecorder {
+	return m.recorder
+}
+
+// ClearLogs mocks base method.
+func (m *MockLogging) ClearLogs() error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ClearLogs")
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// ClearLogs indicates an expected call of ClearLogs.
+func (mr *MockLoggingMockRecorder) ClearLogs() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ClearLogs", reflect.TypeOf((*MockLogging)(nil).ClearLogs))
+}
+
+// CreateLog mocks base method.
+func (m *MockLogging) CreateLog(log structures.LogInput) ([]int, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CreateLog", log)
+	ret0, _ := ret[0].([]int)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CreateLog indicates an expected call of CreateLog.
+func (mr *MockLoggingMockRecorder) CreateLog(log interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateLog", reflect.TypeOf((*MockLogging)(nil).CreateLog), log)
+}
+
+// GetAllLogs mocks base method.
+func (m *MockLogging) GetAllLogs() ([]structures.LogOutput, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAllLogs")
+	ret0, _ := ret[0].([]structures.LogOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAllLogs indicates an expected call of GetAllLogs.
+func (mr *MockLoggingMockRecorder) GetAllLogs() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllLogs", reflect.TypeOf((*MockLogging)(nil).GetAllLogs))
+}
+
+// GetAllLogsByServiceMarketID mocks base method.
+func (m *MockLogging) GetAllLogsByServiceMarketID(id int) ([]structures.LogOutput, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetAllLogsByServiceMarketID", id)
+	ret0, _ := ret[0].([]structures.LogOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetAllLogsByServiceMarketID indicates an expected call of GetAllLogsByServiceMarketID.
+func (mr *MockLoggingMockRecorder) GetAllLogsByServiceMarketID(id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetAllLogsByServiceMarketID", reflect.TypeOf((*MockLogging)(nil).GetAllLogsByServiceMarketID), id)
+}
+
+// GetServiceMarketNameByID mocks base method.
+func (m *MockLogging) GetServiceMarketNameByID(id int) (string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetServiceMarketNameByID", id)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetServiceMarketNameByID indicates an expected call of GetServiceMarketNameByID.
+func (mr *MockLoggingMockRecorder) GetServiceMarketNameByID(id interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetServiceMarketNameByID", reflect.TypeOf((*MockLogging)(nil).GetServiceMarketNameByID), id)
 }

@@ -8,6 +8,8 @@ import (
 
 const (
 	ongoingMaintenanceTable = "ongoing_maintenance"
+	serviceMarketsTable     = "service_markets"
+	loggingTable            = "logging"
 )
 
 type Config struct {

@@ -86,8 +86,8 @@ func (h *Handler) deleteOrder(c *gin.Context) {
 	c.Status(http.StatusOK)
 }
 
-func (h *Handler) clear(c *gin.Context) {
-	if err := h.services.OngoingMaintenance.Clear(); err != nil {
+func (h *Handler) clearOrders(c *gin.Context) {
+	if err := h.services.OngoingMaintenance.ClearOrders(); err != nil {
 		newResponseError(c, err, http.StatusInternalServerError, "Внутренняя ошибка сервера при выполнении метода очистки")
 		return
 	}

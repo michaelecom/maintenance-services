@@ -13,13 +13,13 @@ func NewOngoingMaintenanceService(store store.OngoingMaintenance) *OngoingMainte
 	return &OngoingMaintenanceService{store: store}
 }
 
-func (s *OngoingMaintenanceService) CreateOrder(order structures.OrderList) (int, error) {
+func (s *OngoingMaintenanceService) CreateOrder(list structures.OrderList) (int, error) {
 	return s.store.CreateOrder(structures.Order{
-		ServiceMarketID: order.ServiceMarketID,
-		OrderNumber:     order.Orders[0].OrderNumber,
-		CarBrand:        order.Orders[0].CarBrand,
-		CarModel:        order.Orders[0].CarModel,
-		CarNumber:       order.Orders[0].CarNumber,
+		ServiceMarketID: list.ServiceMarketID,
+		OrderNumber:     list.Orders[0].OrderNumber,
+		CarBrand:        list.Orders[0].CarBrand,
+		CarModel:        list.Orders[0].CarModel,
+		CarNumber:       list.Orders[0].CarNumber,
 	})
 }
 
@@ -69,26 +69,26 @@ func (s *OngoingMaintenanceService) GetAllOrdersByServiceMarketID(id int) ([]str
 	return allOrdersList, err
 }
 
-func (s *OngoingMaintenanceService) UpdateOrder(order structures.OrderList) error {
+func (s *OngoingMaintenanceService) UpdateOrder(list structures.OrderList) error {
 	return s.store.UpdateOrder(structures.Order{
-		ServiceMarketID: order.ServiceMarketID,
-		OrderNumber:     order.Orders[0].OrderNumber,
-		CarBrand:        order.Orders[0].CarBrand,
-		CarModel:        order.Orders[0].CarModel,
-		CarNumber:       order.Orders[0].CarNumber,
+		ServiceMarketID: list.ServiceMarketID,
+		OrderNumber:     list.Orders[0].OrderNumber,
+		CarBrand:        list.Orders[0].CarBrand,
+		CarModel:        list.Orders[0].CarModel,
+		CarNumber:       list.Orders[0].CarNumber,
 	})
 }
 
-func (s *OngoingMaintenanceService) DeleteOrder(order structures.OrderList) error {
+func (s *OngoingMaintenanceService) DeleteOrder(list structures.OrderList) error {
 	return s.store.DeleteOrder(structures.Order{
-		ServiceMarketID: order.ServiceMarketID,
-		OrderNumber:     order.Orders[0].OrderNumber,
-		CarBrand:        order.Orders[0].CarBrand,
-		CarModel:        order.Orders[0].CarModel,
-		CarNumber:       order.Orders[0].CarNumber,
+		ServiceMarketID: list.ServiceMarketID,
+		OrderNumber:     list.Orders[0].OrderNumber,
+		CarBrand:        list.Orders[0].CarBrand,
+		CarModel:        list.Orders[0].CarModel,
+		CarNumber:       list.Orders[0].CarNumber,
 	})
 }
 
-func (s *OngoingMaintenanceService) Clear() error {
-	return s.store.Clear()
+func (s *OngoingMaintenanceService) ClearOrders() error {
+	return s.store.ClearOrders()
 }

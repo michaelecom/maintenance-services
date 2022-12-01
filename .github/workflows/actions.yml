@@ -6,6 +6,8 @@ name: Go
 on:
   push:
     branches: ["workflows"]
+    tags:
+      - "build"
 
 jobs:
   test:

@@ -12,15 +12,27 @@ type OngoingMaintenance interface {
 	UpdateOrder(order structures.Order) error
 	DeleteOrder(order structures.Order) error
 
-	Clear() error
+	ClearOrders() error
+}
+
+type Logging interface {
+	CreateLog(log structures.Log) (int, error)
+	GetAllLogs() ([]structures.Log, error)
+	GetAllLogsByServiceMarketID(id int) ([]structures.Log, error)
+
+	ClearLogs() error
+
+	GetServiceMarketNameByID(id int) (string, error)
 }
 
 type Store struct {
 	OngoingMaintenance
+	Logging
 }
 
 func New(db *sqlx.DB) *Store {
 	return &Store{
 		OngoingMaintenance: NewOngoingMaintenancePostgres(db),
+		Logging:            NewLoggingPostgres(db),
 	}
 }

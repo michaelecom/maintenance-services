@@ -28,7 +28,16 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			ongoing.PUT("/", h.updateOrder)
 			ongoing.DELETE("/", h.deleteOrder)
 
-			ongoing.GET("/clear", h.clear)
+			ongoing.GET("/clear", h.clearOrders)
+
+			logging := ongoing.Group("log")
+			{
+				logging.POST("/", h.createLog)
+				logging.GET("/", h.getAllLogs)
+				logging.GET("/:service_market_id", h.getAllLogsByServiceMarketID)
+
+				logging.GET("/clear", h.clearLogs)
+			}
 		}
 	}
 

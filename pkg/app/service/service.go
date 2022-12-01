@@ -14,13 +14,26 @@ type OngoingMaintenance interface {
 	UpdateOrder(order structures.OrderList) error
 	DeleteOrder(order structures.OrderList) error
 
-	Clear() error
+	ClearOrders() error
+}
+
+type Logging interface {
+	CreateLog(log structures.LogInput) ([]int, error)
+	GetAllLogs() ([]structures.LogOutput, error)
+	GetAllLogsByServiceMarketID(id int) ([]structures.LogOutput, error)
+
+	ClearLogs() error
+	GetServiceMarketNameByID(id int) (string, error)
 }
 
 type Service struct {
 	OngoingMaintenance
+	Logging
 }
 
 func New(store *store.Store) *Service {
-	return &Service{OngoingMaintenance: NewOngoingMaintenanceService(store.OngoingMaintenance)}
+	return &Service{
+		OngoingMaintenance: NewOngoingMaintenanceService(store.OngoingMaintenance),
+		Logging:            NewLoggingService(store.Logging),
+	}
 }
