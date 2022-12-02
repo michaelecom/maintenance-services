@@ -44,7 +44,7 @@ func TestHandler_createOrder(t *testing.T) {
 				r.EXPECT().CreateOrder(order).Return(1, nil)
 			},
 			expectedStatusCode:   http.StatusCreated,
-			expectedResponseBody: `{"id":1}`,
+			expectedResponseBody: `{"id":0}`,
 		},
 		{
 			name:                 "BadRequest",
