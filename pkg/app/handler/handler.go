@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"rimeks.ru/services/pkg/app/service"
 )
@@ -17,6 +18,8 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	// gin.SetMode(gin.ReleaseMode)
 
 	router := gin.New()
+
+	router.Use(cors.Default())
 
 	api := router.Group("api")
 	{
